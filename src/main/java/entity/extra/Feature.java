@@ -1,3 +1,5 @@
+package entity.extra;
+
 import static java.util.Objects.isNull;
 
 public enum Feature {

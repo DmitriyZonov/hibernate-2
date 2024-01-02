@@ -1,3 +1,5 @@
+package entity.film;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,7 +15,6 @@ public class Language {
     @Column
     private String name;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 }

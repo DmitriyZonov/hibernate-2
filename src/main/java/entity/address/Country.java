@@ -1,32 +1,23 @@
+package entity.address;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "city", schema = "movie")
-public class City {
+@Table(name = "country", schema = "movie")
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "city_id")
+    @Column(name = "country_id")
     private Short id;
-    @Column(name = "city", nullable = false)
+    @Column(name = "country", nullable = false)
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 
-    public Short getId() {
-        return id;
-    }
-
-    public void setId(Short id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -36,19 +27,19 @@ public class City {
         this.name = name;
     }
 
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
     }
 }

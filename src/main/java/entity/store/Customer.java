@@ -1,5 +1,9 @@
+package entity.store;
+
+import entity.address.Address;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -23,14 +27,13 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    @Column
-    private Byte active;
+    @Column(name = "active", columnDefinition = "BIT")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isActive;
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "create_date")
     private LocalDateTime createDate;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
@@ -82,12 +85,12 @@ public class Customer {
         this.address = address;
     }
 
-    public Byte getActive() {
-        return active;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setActive(Byte active) {
-        this.active = active;
+    public void setActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public LocalDateTime getCreateDate() {

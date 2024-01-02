@@ -1,3 +1,5 @@
+package entity.store;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -25,10 +27,8 @@ public class Payment {
     private BigDecimal amount;
 
     @Column(name = "payment_date", columnDefinition = "datetime")
-    @Type(type = "datetime")
     private LocalDateTime paymentDate;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 

@@ -1,3 +1,5 @@
+package entity.store;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,8 +13,7 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rental_id")
     private Integer id;
-    @Column(name = "rental_date", columnDefinition = "datetime")
-    @Type(type = "datetime")
+    @Column(name = "rental_date")
     private LocalDateTime rentalDate;
     @ManyToOne
     @JoinColumn(name = "inventory_id")
@@ -20,14 +21,12 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @Column(name = "return_date", columnDefinition = "datetime")
-    @Type(type = "datetime")
+    @Column(name = "return_date")
     private LocalDateTime returnDate;
     @ManyToOne
     @JoinColumn(name = "staff_id")
     private Staff staff;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 

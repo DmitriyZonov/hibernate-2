@@ -1,4 +1,8 @@
+package entity.store;
+
+import entity.address.Address;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -25,14 +29,14 @@ public class Staff {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
-    @Column
-    private Byte active;
+    @Column(name = "active", columnDefinition = "BIT")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
+    private Boolean isActive;
     @Column
     private String username;
     @Column
     private String password;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 
@@ -92,12 +96,12 @@ public class Staff {
         this.store = store;
     }
 
-    public Byte getActive() {
-        return active;
+    public Boolean getActive() {
+        return isActive;
     }
 
-    public void setActive(Byte active) {
-        this.active = active;
+    public void setActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     public String getUsername() {

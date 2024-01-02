@@ -1,3 +1,5 @@
+package entity.address;
+
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,7 +26,6 @@ public class Address {
     @Column
     private String phone;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update")
     private LocalDateTime localDateTime;
 

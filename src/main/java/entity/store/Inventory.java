@@ -1,3 +1,6 @@
+package entity.store;
+
+import entity.film.Film;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,7 +20,6 @@ public class Inventory {
     @JoinColumn(name = "store_id")
     private Store store;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 

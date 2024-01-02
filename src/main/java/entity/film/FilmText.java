@@ -1,9 +1,15 @@
+package entity.film;
+
+import entity.film.Film;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
+import org.hibernate.service.ServiceRegistry;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "film_text", schema = "movie")
-public class FilmText {
+public class FilmText implements Serializable {
     @Id
     @OneToOne
     @JoinColumn(name = "film_id")

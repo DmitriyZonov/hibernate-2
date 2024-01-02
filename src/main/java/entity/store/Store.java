@@ -1,3 +1,7 @@
+package entity.store;
+
+import entity.address.Address;
+import entity.store.Staff;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,7 +21,6 @@ public class Store {
     @JoinColumn(name = "address_id")
     private Address address;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 

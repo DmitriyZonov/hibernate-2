@@ -1,3 +1,6 @@
+package entity.film;
+
+import entity.film.Film;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,7 +19,6 @@ public class Actor {
     @Column(name = "first_name")
     private String firstName;
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "last_update", nullable = false)
     private LocalDateTime localDateTime;
 

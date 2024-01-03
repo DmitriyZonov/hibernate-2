@@ -18,6 +18,8 @@ public class AddressDAO extends GenericDAO<Address>{
         address1.setPostalCode(postal_code);
         address1.setPhone(phone);
 
+        save(address1);
+
         return address1;
     }
 }

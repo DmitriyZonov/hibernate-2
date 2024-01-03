@@ -3,11 +3,10 @@ package dao;
 import entity.address.Address;
 import entity.store.Customer;
 import entity.store.Store;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CustomerDAO extends GenericDAO<Customer>{
     public CustomerDAO(SessionFactory sessionFactory) {
@@ -15,13 +14,9 @@ public class CustomerDAO extends GenericDAO<Customer>{
     }
 
     @Override
-    public Customer save(Customer customer) {
-        try (Session session = getCurrentSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.saveOrUpdate(customer);
-            transaction.commit();
-            return customer;
-        }
+    public Customer getById(int id) {
+        short customerId = (short) id;
+        return getCurrentSession().get(Customer.class, customerId);
     }
 
     public Customer createCustomer(String firstName, String lastName, String email, Store store, Address address) {
@@ -36,5 +31,12 @@ public class CustomerDAO extends GenericDAO<Customer>{
       customer.setLastUpdate(LocalDateTime.now());
 
       return customer;
+    }
+
+    public List<Customer> getDebtorCustomerList() {
+        return getCurrentSession().createQuery("select r.customer from Rental r where r.returnDate is null", Customer.class).list();
+    }
+    public List<Customer> getNotDebtorCustomerList() {
+        return getCurrentSession().createQuery("select r.customer from Rental r where r.returnDate is not null", Customer.class).list();
     }
 }

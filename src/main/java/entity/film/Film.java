@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import utility.RatingConverter;
+import utility.YearAttributeConverter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ public class Film {
     @Type(type = "text")
     private String description;
     @Column(columnDefinition = "year", name = "release_year")
+    @Convert(converter = YearAttributeConverter.class)
     private Year releaseYear;
     @ManyToOne
     @JoinColumn(name = "language_id")
